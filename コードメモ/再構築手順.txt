@@ -1,0 +1,53 @@
+1.config/database.php: データベース接続設定
+2.app/helpers/DatabaseHelper.php: データベース接続のヘルパー関数
+3.app/models/User.php: ユーザーモデル
+4.app/controllers/AuthController.php: 認証コントローラー
+5.app/views/login.php: ログインページ
+6.public/index.php: メインエントリーポイント
+
+
+1. `app/`: アプリケーションのコア機能を含むディレクトリ
+   - `controllers/`: ユーザーリクエストを処理し、モデルとビューを連携
+     - `AuthController.php`: 認証関連の処理
+     - `UserController.php`: ユーザー管理の処理
+     - `CoordinateController.php`: 座標データの処理
+     - `CommentController.php`: コメント機能の処理
+   - `models/`: データベース操作とビジネスロジック
+     - `User.php`: ユーザーデータのモデル
+     - `Coordinate.php`: 座標データのモデル
+     - `Comment.php`: コメントデータのモデル
+   - `views/`: HTMLテンプレート
+     - `login.php`: ログインページ
+     - `register.php`: ユーザー登録ページ
+     - `dashboard.php`: メインダッシュボード
+   - `helpers/`: ユーティリティ関数
+     - `DatabaseHelper.php`: データベース接続補助
+     - `ValidationHelper.php`: 入力検証用関数
+
+2. `config/`: 設定ファイル
+   - `database.php`: データベース接続設定
+   - `app.php`: アプリケーション全体の設定
+
+3. `public/`: Webサーバーが直接アクセスできるファイル
+   - `css/`: スタイルシート
+     - `style.css`: メインのスタイルシート
+   - `js/`: クライアントサイドJavaScript
+     - `app.js`: メインのJavaScriptファイル
+   - `index.php`: アプリケーションのエントリーポイント
+
+4. `src/`: アプリケーションの主要機能を実装するクラス
+   - `Auth/`: 認証関連のクラス
+     - `LoginService.php`: ログイン処理
+   - `User/`: ユーザー管理関連のクラス
+     - `UserService.php`: ユーザー操作のロジック
+   - `Coordinate/`: 座標処理関連のクラス
+     - `CoordinateService.php`: 座標データの処理
+   - `Comment/`: コメント機能関連のクラス
+     - `CommentService.php`: コメント操作のロジック
+
+5. `tests/`: テストファイル
+   - `UserTest.php`: ユーザー機能のテスト
+   - `CoordinateTest.php`: 座標機能のテスト
+   - `CommentTest.php`: コメント機能のテスト
+
+MVC（Model-View-Controller）パターン
