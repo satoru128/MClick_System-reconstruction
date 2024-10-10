@@ -1,0 +1,230 @@
+@charset "utf-8";
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+#controls {
+    display: flex;
+}
+
+#video-container {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    overflow: hidden;
+}
+
+#player, #myCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#player {
+    z-index: 0; /* YouTube動画を背面に配置 */
+}
+
+#myCanvas {
+    position: absolute;
+    z-index: 10;  /* より大きな値に設定 */
+    pointer-events: auto;  /* キャンバスを通してクリック可能にする */
+    border: 1px solid black;
+    background-color: transparent; /* 背景を透明に*/
+    opacity: 1; /* 透明度を1に */
+    /* background-color: rgba(255, 0, 0, 0.1); 赤色の半透明背景 */
+}
+
+/* #videoSelection{
+    font-size: 13px;
+    padding: 3px;
+} */
+
+
+/* #logout-controls {
+    width: 640px;
+    margin-top: 10px;
+} */
+
+/*リセットボタン*/
+/* #reset-container {
+    margin-top: 20px; 
+    display: flex;
+    align-items: center;
+}
+#resetBtn {
+    margin-left: 10px;
+} */
+  
+  .modal {
+    z-index: 1050;
+  }
+
+.modal-content {
+    z-index: 1060;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+/* 送信ボタンとリセットボタンのスタイル */
+#commentSubmit, #resetConfirm ,#confirmUpdateYes{
+    background-color: #4CAF50; /* 緑色 */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* キャンセルボタンのスタイル */
+#commentCancel, #resetCancel, #confirmUpdateNo{
+    background-color: #f44336; /* 赤色 */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* ボタンホバー時のスタイル */
+#commentSubmit:hover, #commentCancel:hover, #resetConfirm:hover, #resetCancel:hover {
+    opacity: 0.8;
+}
+
+/*スピードコントロールボタン*/
+#replay-controls {
+    margin-top: 20px;
+}
+
+/*コメントボタン*/
+/* #comment-section {
+    margin-top: 20px;
+} */
+#commentModal {
+    display: none;
+    position: fixed;
+    z-index: 1060;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* コンテキストメニューのスタイル */
+.context-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+
+.context-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+}
+
+.context-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+#player-container {
+    position: relative;
+    width: 640px;
+    height: 360px;
+}
+
+.marker {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: none;
+    pointer-events: none;
+}
+
+/* クリック座標データのスタイル */
+#video-and-data-container {
+    display: flex;
+    width: 100%;
+    max-width: 1280px; /* 必要に応じて調整 */
+    margin: 0 auto;
+}
+#coordinate-data-container {
+    width: 300px; 
+    height: 360px;
+    margin: 0; /* 上下の余白を0に設定 */
+    padding-left: 10px; /* パディングを減らす */
+}
+#coordinate-data-container h2 {
+    margin: 0; /* 上下の余白を0に設定 */
+    padding: 0; /* パディングを0に設定 */
+    color: #333;
+}
+#coordinate-data {
+    margin-top: 0;
+    height: 300px; 
+    overflow-y: auto;
+    padding: 0;
+}
+#coordinate-data table {
+        width: 100%;
+        border-collapse: collapse;
+}
+#coordinate-data th, #coordinate-data td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+}
+#coordinate-data th {
+    background-color: #f2f2f2;
+}
+#coordinate-data tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#coordinate-data tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 座標データの各アイテムのスタイル */
+.coordinate-item {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+@keyframes border-flash {
+    0% {
+        border-color: red;
+        border-width: 5px;  /* 赤枠の幅を5pxに設定 */
+    }
+    100% {
+        border-color: black;
+        border-width: 1px;  /* 元の枠の幅に戻す */
+    }
+}
+
+.border-flash {
+    animation: border-flash 0.5s ease-out;
+}
